@@ -20,7 +20,9 @@ Generate the X509 certificate for the CA. For this step, just hit Enter for all 
 openssl req -new -x509 -nodes -days 365000 \
       -key ca-key.pem -out ca-cert.pem
 check_circle
+=========================================
 Create a Private Key for the NGINX Server
+=========================================
 Generate a private key and create a certificate request for the NGINX server:
 
 openssl req -newkey rsa:2048 -days 365000 \
@@ -33,7 +35,9 @@ openssl rsa -in server-key.pem -out server-key.pem
 We should see the following: writing RSA key
 
 check_circle
+=====================================================
 Create a Self-Signed Certificate for the NGINX Server
+=====================================================
 Generate a self-signed X509 certificate for the NGINX server:
 
 openssl x509 -req -in server-req.pem -days 365000 \
@@ -45,7 +49,9 @@ We need to allow the nginx user access to the certificates. Add read permission 
 
 chmod 644 *
 check_circle
+=======================================================
 Verify the Self-Signed Certificate for the NGINX Server
+=======================================================
 Let's use the openssl verify command to verify that the X509 certificate was correctly generated:
 
 openssl verify -CAfile ca-cert.pem server-cert.pem
